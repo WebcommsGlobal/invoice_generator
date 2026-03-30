@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // State to hold items
     let lineItems = [
-        { id: Date.now(), description: 'Web Development Services', cost: 150000.00 },
-        { id: Date.now() + 1, description: 'Domain Registration (1 Yr)', cost: 5000.00 }
+        { id: Date.now(), description: 'Sub Domain', cost: 0.00 },
+        { id: Date.now() + 1, description: 'Hosting', cost: 6500.00 }
     ];
 
     // ==== Initialization ====
