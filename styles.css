@@ -1,0 +1,46 @@
+/* Ensure the invoice container mimics an A4 paper layout visually */
+.invoice-paper {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 0 auto;
+    background: white;
+    box-sizing: border-box;
+    /* Adding some subtle scaling to fit within the viewport comfortably if needed */
+    transform-origin: top center;
+    transform: scale(0.9);
+}
+
+/* Print styling adjustments - these take over when html2pdf runs */
+@media print {
+    .invoice-paper {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        width: 100%;
+        min-height: 100%;
+        box-shadow: none;
+        transform: scale(1);
+    }
+    
+    /* Hide the scrollbars across the application when printing */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Custom Scrollbars for the Web App feel */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; 
+}
