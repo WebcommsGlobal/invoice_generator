@@ -22,7 +22,7 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        print: '#333333',
+                        brandOrange: '#e36121',
                     }
                 }
             }
@@ -108,22 +108,25 @@
         <div id="invoicePreview" class="bg-white shadow-2xl invoice-paper relative flex flex-col">
             
             <!-- Header section -->
-            <div class="pt-4">
-                <div class="flex flex-col mb-6">
+            <div class="flex justify-between items-end pb-8 border-b-2 border-gray-800">
+                <div class="flex flex-col gap-2">
                     <div class="flex items-center gap-4">
-                        <img src="assets/image/Logo/logoweb.png" alt="Webcomms Logo" class="h-16">
+                        <img src="assets/image/Logo/logoweb.png" alt="">
+                        <!-- Logo Placeholder -->
+                        
                     </div>
-                    <p class="text-[10px] font-bold tracking-[0.4em] text-gray-400 mt-1 uppercase ml-1">
-                        Solutions with ease
-                    </p>
+                    <!-- Slogan -->
+                    <p class="text-xs font-semibold tracking-[0.2em] text-gray-600 mt-1">SOLUTIONS WITH EASE</p>
                 </div>
 
-                <div class="bg-brandOrange h-14 flex items-center justify-end relative mb-10">
-                    <h2 class="text-white text-5xl font-black italic tracking-tighter mr-20">
+                <div class="flex items-center w-full mt-10">
+                    <div class="flex-grow h-12 bg-[#e36121]"></div>
+                    
+                    <h2 class="text-5xl font-bold text-black px-6 tracking-tight italic">
                         INVOICE
                     </h2>
-                    <div class="bg-white h-full w-8 ml-4"></div>
-                    <div class="bg-brandOrange h-full w-12"></div>
+                    
+                    <div class="w-14 h-12 bg-[#e36121]"></div>
                 </div>
             </div>
 
