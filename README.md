@@ -44,13 +44,6 @@ invoice_generator/
 3. **Add Items:** Click `+ Add Item` to insert billing rows. Fill out the description, quantity, and unit price. The total calculates automatically.
 4. **Generate PDF:** Review the A4 preview on the right. Once satisfied, click the **Download PDF** button at the bottom of the sidebar to save your invoice locally.
 
-## 🏦 Pre-Configured Details
-
-This generator is pre-configured with Webcomms Global's business parameters to save time:
-- **Company Address:** No: D 263/2, Magammana, Dehiovita.
-- **Bank Information:** Bank of Ceylon (BOC), Karawanella Branch
-- **Registration No:** PV 127819
-- **Contact Setup:** Pre-filled phone numbers, email, and website link on the invoice footer.
 
 ---
 
