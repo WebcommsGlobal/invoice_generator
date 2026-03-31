@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // State to hold items
     let lineItems = [
-        { id: Date.now(), description: 'Sub Domain', cost: 0.00 },
-        { id: Date.now() + 1, description: 'Hosting', cost: 6500.00 }
+        { id: Date.now(), description: 'Web Development Services', qty: 1, cost: 150000.00 },
+        { id: Date.now() + 1, description: 'Domain Registration (1 Yr)', qty: 1, cost: 5000.00 }
     ];
 
     // ==== Initialization ====
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add Row Button
     addRowBtn.addEventListener('click', () => {
-        lineItems.push({ id: Date.now(), description: '', cost: 0.00 });
+        lineItems.push({ id: Date.now(), description: '', qty: 1, cost: 0.00 });
         renderSidebarItems();
         renderPreviewItems();
     });
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateTotal() {
-        return lineItems.reduce((sum, item) => sum + (parseFloat(item.cost) || 0), 0);
+        return lineItems.reduce((sum, item) => sum + ((parseFloat(item.cost) || 0) * (parseFloat(item.qty) || 0)), 0);
     }
 
     // Render left pane fields
@@ -153,11 +153,33 @@ document.addEventListener('DOMContentLoaded', () => {
             descContainer.appendChild(descLabel);
             descContainer.appendChild(descInput);
 
+            // Qty and Cost grouping
+            const qtyCostRow = document.createElement('div');
+            qtyCostRow.className = 'flex gap-3';
+
+            // Qty input
+            const qtyContainer = document.createElement('div');
+            qtyContainer.className = 'w-1/3';
+            const qtyLabel = document.createElement('label');
+            qtyLabel.className = 'block text-xs font-semibold mb-1 text-gray-500';
+            qtyLabel.textContent = 'Qty';
+            
+            const qtyInput = document.createElement('input');
+            qtyInput.type = 'number';
+            qtyInput.min = '1';
+            qtyInput.className = 'w-full text-sm border border-gray-300 rounded p-1.5 focus:ring-1 focus:ring-blue-500 outline-none';
+            qtyInput.value = item.qty;
+            qtyInput.addEventListener('input', (e) => updateItem(item.id, 'qty', e.target.value));
+
+            qtyContainer.appendChild(qtyLabel);
+            qtyContainer.appendChild(qtyInput);
+
             // Cost input
             const costContainer = document.createElement('div');
+            costContainer.className = 'w-2/3';
             const costLabel = document.createElement('label');
             costLabel.className = 'block text-xs font-semibold mb-1 text-gray-500';
-            costLabel.textContent = 'Cost (LKR)';
+            costLabel.textContent = 'Unit Price (LKR)';
             
             const costInput = document.createElement('input');
             costInput.type = 'number';
@@ -170,9 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
             costContainer.appendChild(costLabel);
             costContainer.appendChild(costInput);
 
+            qtyCostRow.appendChild(qtyContainer);
+            qtyCostRow.appendChild(costContainer);
+
             itemDiv.appendChild(deleteBtn);
             itemDiv.appendChild(descContainer);
-            itemDiv.appendChild(costContainer);
+            itemDiv.appendChild(qtyCostRow);
             
             itemsContainer.appendChild(itemDiv);
         });
@@ -193,14 +218,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const tdDesc = document.createElement('td');
             tdDesc.className = 'py-3 px-4 text-sm text-gray-800';
             tdDesc.textContent = item.description || '-';
+
+            const tdQty = document.createElement('td');
+            tdQty.className = 'py-3 px-4 text-sm text-center font-medium text-gray-800';
+            tdQty.textContent = parseFloat(item.qty) || 0;
             
             const tdCost = document.createElement('td');
             tdCost.className = 'py-3 px-4 text-sm text-right font-medium text-gray-800';
             tdCost.textContent = formatCurrency(item.cost);
+
+            const tdAmount = document.createElement('td');
+            tdAmount.className = 'py-3 px-4 text-sm text-right font-medium text-gray-800';
+            tdAmount.textContent = formatCurrency((parseFloat(item.cost) || 0) * (parseFloat(item.qty) || 0));
             
             tr.appendChild(tdRef);
             tr.appendChild(tdDesc);
+            tr.appendChild(tdQty);
             tr.appendChild(tdCost);
+            tr.appendChild(tdAmount);
             
             previewTableBody.appendChild(tr);
         });
